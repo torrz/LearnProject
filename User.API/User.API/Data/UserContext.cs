@@ -23,7 +23,7 @@ namespace User.API.Data
             modelBuilder.Entity<UserProperty>().Property(u => u.Value).HasMaxLength(100);
             modelBuilder.Entity<UserProperty>()
                 .ToTable("UserProperties")
-                .HasKey(u => new { u.Key, u.UserId, u.Value });
+                .HasKey(u => new { u.Key, u.AppUserId, u.Value });
             
             modelBuilder.Entity<UserTag>().Property(u => u.Tag).HasMaxLength(100);
             modelBuilder.Entity<UserTag>()
