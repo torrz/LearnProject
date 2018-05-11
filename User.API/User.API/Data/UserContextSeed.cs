@@ -21,10 +21,12 @@ namespace User.API.Data
         public static async Task SeedAsync(IApplicationBuilder applicationBuilder, ILoggerFactory loggerFactory, int? retry = 0)
         {
             var retryForAvaiability = retry.Value;
-            try
+
+            using (var scope = applicationBuilder.ApplicationServices.CreateScope())
             {
-                using (var scope=applicationBuilder.ApplicationServices.CreateScope())
+                try
                 {
+
                     var context = (UserContext)scope.ServiceProvider.GetService(typeof(UserContext));
                     var logger = (ILogger<UserContextSeed>)scope.ServiceProvider.GetService(typeof(ILogger<UserContextSeed>));
                     logger.LogDebug("开始数据库初始化");
@@ -36,19 +38,20 @@ namespace User.API.Data
                         context.Users.Add(new Models.AppUser { Name = "torrz" });
                         context.SaveChanges();
                     }
+
                 }
-            }
-            catch (Exception ex)
-            {
-                if (retryForAvaiability<10)
+                catch (Exception ex)
                 {
-                    retryForAvaiability++;
+                    if (retryForAvaiability < 10)
+                    {
+                        retryForAvaiability++;
 
-                    var logger = loggerFactory.CreateLogger(typeof(UserContextSeed));
-                    logger.LogError(ex.Message);
+                        var logger = loggerFactory.CreateLogger(typeof(UserContextSeed));
+                        logger.LogError(ex.Message);
 
-                    await SeedAsync(applicationBuilder, loggerFactory, retryForAvaiability);
+                        await SeedAsync(applicationBuilder, loggerFactory, retryForAvaiability);
 
+                    }
                 }
             }
         }
