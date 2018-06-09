@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using User.API.Data;
+using User.API.Filters;
 
 namespace User.API
 {
@@ -28,7 +29,9 @@ namespace User.API
             services.AddDbContext<UserContext>(options => {
                 options.UseMySQL(Configuration.GetConnectionString("MysqlUser"));
             });
-            services.AddMvc();
+            services.AddMvc(option=> {
+                option.Filters.Add(typeof(GlobalExceptionFilter));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
