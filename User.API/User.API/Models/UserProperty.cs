@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace User.API.Models
 {
@@ -16,18 +17,15 @@ namespace User.API.Models
 
         public override int GetHashCode()
         {
-            if (!IsTransient())
+            //return (Key + Value).GetHashCode() ^ 31;
+            if (!this.IsTransient())
             {
                 if (!_requestedHashCode.HasValue)
                 {
-                    _requestedHashCode = (this.Key + this.Value).GetHashCode() ^ 31;
+                    _requestedHashCode = (Key + Value).GetHashCode() ^ 31;
+                }
 
-                    return _requestedHashCode.Value;
-                }
-                else
-                {
-                    return base.GetHashCode();
-                }
+                return _requestedHashCode.Value;
             }
             return base.GetHashCode();
         }
