@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User.API", "User.API\User.API.csproj", "{E1B77C12-4F89-4BAF-8EEC-2D21E4A3D890}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6FA5152A-7127-4C00-9058-DB4392BDB645}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.API.UnitTests", "User.API.UnitTests\User.API.UnitTests.csproj", "{AC67D387-6067-40F1-8BEA-A59B29FFCC56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{E1B77C12-4F89-4BAF-8EEC-2D21E4A3D890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1B77C12-4F89-4BAF-8EEC-2D21E4A3D890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1B77C12-4F89-4BAF-8EEC-2D21E4A3D890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC67D387-6067-40F1-8BEA-A59B29FFCC56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC67D387-6067-40F1-8BEA-A59B29FFCC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC67D387-6067-40F1-8BEA-A59B29FFCC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC67D387-6067-40F1-8BEA-A59B29FFCC56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC67D387-6067-40F1-8BEA-A59B29FFCC56} = {6FA5152A-7127-4C00-9058-DB4392BDB645}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A3EAA3F-BE6B-4EF2-B095-03C39A9211E2}

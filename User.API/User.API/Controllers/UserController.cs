@@ -59,7 +59,7 @@ namespace User.API.Controllers
                 .AsNoTracking()
                 .Where(u => u.AppUserId == UserIdentity.UserId).ToListAsync();
 
-            var allProperties = origionProperties.Union(user.Properties).Distinct();//①合并去重
+            var allProperties = origionProperties.Union(user.Properties);//①合并，返回的序列包含两个输入序列的唯一的元素。
 
             var removedProperties = origionProperties.Except(user.Properties);//②原有的除去请求的=需删除的
             var newProperties = allProperties.Except(origionProperties);//③全部除去原有的=需新增的
